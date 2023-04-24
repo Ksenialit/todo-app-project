@@ -1,17 +1,17 @@
 <template>
-  <HelloWorld msg="You did it!" />
+  <!-- component-->
   <RouterView />
 
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 import { RouterLink, RouterView } from 'vue-router'
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    // HelloWorld,
     RouterLink,
     RouterView
   },
