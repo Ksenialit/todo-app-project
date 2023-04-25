@@ -1,22 +1,30 @@
 <template>
-  <!-- component-->
+  <Nav />
   <RouterView />
 
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import Nav from './components/Nav.vue'
 import { RouterLink, RouterView } from 'vue-router'
+import { mapActions } from 'pinia'
+import UserStore from './store/user.js'
 
 export default {
   name: "App",
   components: {
-    // HelloWorld,
+    Nav,
     RouterLink,
     RouterView
   },
   data() {
     
+  },
+  methods: {
+    ... mapActions(UserStore, ['fetchUser'])
+  },
+  async created() {
+    await this.fetchUser()
   }
 }
 
