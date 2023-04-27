@@ -1,7 +1,7 @@
 // /store/task.js
  
 import { defineStore } from 'pinia';
-import { supabase } from '../supabase';
+import supabase from '../supabase.js';
  
 export const useTaskStore = defineStore('tasks', {
   state: () => ({
@@ -14,7 +14,22 @@ export const useTaskStore = defineStore('tasks', {
         .select('*')
         .order('id', { ascending: false });
       this.tasks = tasks;
+    },
+    /*
+    async addNewTask ({ title, userId }) {
+      const { data, error } = await supabase
+      .from('tasks')
+      .insert({ title, user_id: userID})
+      .select()
+
+      if(error) {
+        console.log(error)
+        return 
+      }
+      console.log('New task -->', data)
+      this-tasksList.push(...data)
     }
+    */
   }
 });
 
