@@ -8,7 +8,7 @@
             <label for="password">Password:</label>
             <input type="password" placeholder="Enter Password" name="password" v-model="password" required>
 
-            <button type="submit">Sign in</button>   
+            <button type="submit" @click="handleSignIn">Sign in</button>   
 
             <label>Remember me: </label>
             <input type="checkbox" checked="checked" name="remember">
@@ -29,31 +29,29 @@
         components: {},
         data() {
             return {
-                email: "",
-                password: ""
-            }
-        },
+                email: '',
+                password: ''
+        }
+        },    
         computed: {
             ... mapState(UserStore, ['user']) 
         },
         methods: {
-            ... mapActions(UserStore, ['user'])
-        }, /*
-        created() {
-            this.fetchUser
-        }, */
-        
-       /* methods: {
-            async submit () {
-                const useUserStore = UserStore()
+            ... mapActions(UserStore, ['signIn']),
+            async handleSignIn(event) {
+                event.preventDefault()
+                const userData = {
+                    email: this.email,
+                    password: this.password
+                }
                 try {
-                    await useUserStore.singIn(this.email, this.password);
-                    this.$router.push({ name: "dashboard" });
+                    await this.signIn(userData)
+                    console.log(this.user)
                 } catch (error) {
-                console.error(error);
+                    alert('User does not exist')
                 }
             }
-        }*/
+        },
     }
   
 </script>

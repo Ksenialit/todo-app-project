@@ -4,46 +4,59 @@
         <div class="container">
             <p>Create an account.</p>
             <label for="email">Email:</label>
-            <input type="email" placeholder="Enter your email" name="email" required>
+            <input type="email" placeholder="Enter your email" name="email" v-model="email" required>
 
             <label for="password">Password:</label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            <input type="password" placeholder="Enter Password" name="password" v-model="password" required>
 
             <label for="repeat-password">Repeat Password:</label>
             <input type="password" placeholder="Repeat Password" name="repeat-password" required>
+            <!-- validar password with function-->
 
             <label>Remember me:</label>
             <input type="checkbox" checked="checked" name="remember">
 
             <p>By creating an account, you agree to the Terms of Service and Privacy Policy.</p>
 
-            <button type="submit" class="">Sign Up</button>
+            <button type="submit" class="" @click="handleSignUp">Sign Up</button>
         </div>
     </form> 
+    <button type="button" class="" @click="handleSignUp">Test</button>
   </template>
   
   <script>
-  
+  import UserStore from '../store/user'
+  import { mapState, mapActions } from 'pinia';
+
   export default {
     name: "SignUp",
-    components: {
-      
-    },
+    components: {},
     data() {
-      
+        return {
+            email: '',
+            password: ''
+        }
+    },
+    computed: {
+            ... mapState(UserStore, ['user']) 
+    },
+    methods: {
+        ... mapActions(UserStore, ['signUp']),
+        async handleSignUp(event) {
+            event.preventDefault()
+            const userData = {
+                email: this.email,
+                password: this.password
+            }
+            try {
+                await this.signUp(userData)
+            } catch (error) {
+                alert('User already exists')
+            }
+           
+        }
+    },
     }
-
-    /* import { ref } from 'vue';
-    import { useUserStore } from '../stores/user';
-    const email = ref([]);
-    const password = ref([]);
-    const userStore = useUserStore()
-    const submit = (event) => {
-    event.preventDefault()
-    userStore.signUp(email.value, password.value)
-}
- */
-  }
   
   </script>
   
