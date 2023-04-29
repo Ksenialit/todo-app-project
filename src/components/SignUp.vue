@@ -20,8 +20,8 @@
 
             <button type="submit" class="" @click="handleSignUp">Sign Up</button>
         </div>
+        <!--email de confirmación y alerta de que tiene que confirmar email-->
     </form> 
-    <button type="button" class="" @click="handleSignUp">Test</button>
   </template>
   
   <script>
@@ -51,7 +51,7 @@
             try {
                 await this.signUp(userData)
             } catch (error) {
-                alert('User already exists')
+                alertexists('User already ')
             }
            
         }

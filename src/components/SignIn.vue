@@ -48,7 +48,7 @@
                     await this.signIn(userData)
                     console.log(this.user)
                 } catch (error) {
-                    alert('User does not exist')
+                    alert(error)
                 }
             }
         },

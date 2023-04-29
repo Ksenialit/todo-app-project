@@ -26,8 +26,8 @@ export const useTaskStore = defineStore('tasks', {
         console.log(error)
         return 
       }
-      console.log('New task -->', data)
-      this-tasksList.push(...data)
+      console.log('New task =>', data)
+      this.tasksList.push(...data)
     }
     */
   }
