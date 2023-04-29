@@ -1,5 +1,9 @@
 
+<template>
 
+</template>
+
+<script>
 
 /*  import UserStore from '../store/user.js'
 import { mapState, mapActions } from 'pinia';
@@ -26,3 +30,10 @@ export default{
         this.addNewTask ({ tittle: 'New Task', userId: ''})
     }
 }, */
+
+
+</script>
+
+<style scoped>
+
+</style>

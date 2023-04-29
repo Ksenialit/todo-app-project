@@ -15,6 +15,7 @@ export const useTaskStore = defineStore('tasks', {
         .order('id', { ascending: false });
       this.tasks = tasks;
     },
+    
     /*
     async addNewTask ({ title, userId }) {
       const { data, error } = await supabase
