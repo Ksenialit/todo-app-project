@@ -7,8 +7,8 @@
 <script>
 import Nav from './components/Nav.vue'
 import { RouterLink, RouterView } from 'vue-router'
-import { mapActions } from 'pinia'
-import UserStore from './store/user.js'
+import { mapActions, mapState } from 'pinia'
+import UserStore from './store/user'
 
 export default {
   name: "App",
@@ -17,14 +17,33 @@ export default {
     RouterLink,
     RouterView
   },
-  data() {
-    
+  computed: {
+    ... mapState(UserStore, ['user']),
   },
   methods: {
-    ... mapActions(UserStore, ['fetchUser'])
+    ... mapActions(UserStore, ['fetchUser']),
+    checkUserExists() {
+      console.log(this.user)
+      if (this.user) {
+        this.$router.push({ path: '/dashboard' })
+      } else {
+        this.$router.push({ path: '/sign-in' })
+      }
+    }
   },
   async created() {
+    try {
     await this.fetchUser()
+    this.checkUserExists()
+    } catch (error) {
+      console.error(error)
+      this.checkUserExists()
+    }
+  },
+  watch: {
+    user() {
+      this.checkUserExists()
+    }
   }
 }
 
