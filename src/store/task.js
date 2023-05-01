@@ -3,7 +3,7 @@
 import { defineStore } from 'pinia';
 import supabase from '../supabase.js';
  
-export const useTaskStore = defineStore('tasks', {
+export default defineStore('tasks', {
   state: () => ({
     tasks: null
   }),
@@ -13,29 +13,40 @@ export const useTaskStore = defineStore('tasks', {
         .from('tasks')
         .select('*')
         .order('id', { ascending: false });
+
       this.tasks = tasks;
     },
-    
-    /*
-    async addNewTask ({ title, userId }) {
+
+    async addNewTask (newTask, userId) {
       const { data, error } = await supabase
-      .from('tasks')
-      .insert({ title, user_id: userID})
-      .select()
+        .from('tasks')
+        .insert({ title: newTask, user_id: userId })
+        .select()
 
       if(error) {
-        console.log(error)
+        console.error(error)
         return 
       }
-      console.log('New task =>', data)
-      this.tasksList.push(...data)
+      this.tasks.push(...data)
+    },
+
+    async deleteTask (index) {
+      const { error } = await supabase
+        .from('tasks')
+        .delete()
+        .eq('id', index)
+
+        if(error) {
+          console.error(error)
+          return 
+        }
+        this.tasks = this.tasks.filter(task => task.id !== index)
     }
-    */
   }
 });
 
 // Here is a basic task store. We’ve only given you one action: fetchTasks. 
 // You’ll need to create your own store actions to update, create and delete the tasks.
-// create task (Create a record and return it): https://supabase.com/docs/reference/javascript/insert
+// create task (Create a record and return it): https://supabase.com/docs/reference/javascript/insert - done
 // delete task: https://supabase.com/docs/reference/javascript/delete
 // update task: https://supabase.com/docs/reference/javascript/update

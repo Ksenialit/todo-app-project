@@ -1,36 +1,54 @@
 <template>
     <h1>Dashboard / HomeView</h1>
+    <button @click="signOut">Log out</button>
     <div>
-      <p v-for="todo in taskList" :key="todo.id"> {{ todo.title }}</p>
-      <button @click="$event => addNewTask({ title: 'New task', userId: this.user.id})">Create task</button>
-      <!-- añadir input y coger el valor de ese input y llamar a la action quees la función de la store-->
-      <button @click="signOut">Log out</button>
+
+      <label>Add to do</label>
+      <input type="text" v-model="newTask" @keydown.enter="handleNewTask(this.newTask, this.user.id)" placeholder="Write your to do">
+      <button @click="$event => handleNewTask(this.newTask, this.user.id)">Create task</button>
+      <div>
+        <ul>
+          <TaskItem v-bind:task="task" v-for="task in tasks" :key="task.id" @delete="deleteTask(task.id)"></TaskItem>
+        </ul>
+      </div>
+      
     </div>
   </template>
   
   <script>
+  import supabase from '../supabase.js'
   import { mapActions, mapState } from 'pinia'
-  import { useTaskStore } from '../store/task'
+  import TasksStore from '../store/task'
   import UserStore from '../store/user'
+  import TaskItem from '../components/TaskItem.vue'
 
   export default {
     name: "Dashboard",
-    components: {},
+    components: {
+      TaskItem
+    },
     data() {
       return {
-            newTaskTitle: ''
+            newTask: ''
         }
     },
     computed: {
-        ... mapState(useTaskStore, ['tasksList']),
-        ... mapState(UserStore, ['user'])  
+      ... mapState(TasksStore, ['tasks']),
+      ... mapState(UserStore, ['user'])  
     },
     methods: {
-        ... mapActions(useTaskStore, ['addNewTask', 'fetchTasks']),
-        ... mapActions(UserStore, ['signOut'])
+      ... mapActions(TasksStore, ['fetchTasks', 'addNewTask', 'deleteTask']),
+      ... mapActions(UserStore, ['signOut']),
+      handleNewTask (newTask, userId) {
+         this.addNewTask(newTask, userId)
+         this.newTask = ''
+      }
     },
     created() {
       this.fetchTasks()
+    },
+    mounted() {
+      //this.addNewTask(this.newTask, this.userId)
     }
   }
   

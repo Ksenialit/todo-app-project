@@ -23,7 +23,6 @@ export default {
   methods: {
     ... mapActions(UserStore, ['fetchUser']),
     checkUserExists() {
-      console.log(this.user)
       if (this.user) {
         this.$router.push({ path: '/dashboard' })
       } else {
