@@ -41,6 +41,43 @@ export default defineStore('tasks', {
           return 
         }
         this.tasks = this.tasks.filter(task => task.id !== index)
+    },
+
+    async updateTask (index, is_complete) {
+    const { data, error } = await supabase
+      .from('tasks')
+      .update({ is_complete: !is_complete })
+      .eq('id', index)
+      .select()
+
+      if(error) {
+        console.error(error)
+        return 
+      }
+      this.tasks = this.tasks.map(function (task) {
+        if (task.id === index) {
+          return data[0]
+        }
+        return task
+      })
+    },
+    async editTask (index, title) {
+      const { data, error } = await supabase
+        .from('tasks')
+        .update({ title: title })
+        .eq('id', index)
+        .select()
+  
+        if(error) {
+          console.error(error)
+          return 
+        }
+        this.tasks =this.tasks.map(function (task) {
+          if (task.id === index) {
+            return data[0]
+          }
+          return task
+        })
     }
   }
 });
