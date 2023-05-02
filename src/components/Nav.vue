@@ -13,9 +13,6 @@
     name: "Nav",
     components: {
         RouterLink
-    },
-    data() {
-      
     }
   }
   

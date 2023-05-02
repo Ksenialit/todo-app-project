@@ -11,9 +11,6 @@
     name: "Auth",
     components: {
       RouterView
-    },
-    data() {
-      
     }
   }
   
