@@ -1,7 +1,7 @@
-<template>
-    <h1>Auth</h1>
-    <RouterView />
-  
+  <template>
+    <div class="form-auth m-auto w-100 card">
+      <RouterView />
+    </div>
   </template>
   
   <script>
@@ -16,7 +16,9 @@
   
   </script>
   
-  <style scoped>
-  
+  <style>
+  .form-auth {
+    max-width: 300px;
+  }
   </style>
   

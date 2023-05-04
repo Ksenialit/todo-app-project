@@ -1,24 +1,34 @@
 <template>
-    <h1>SignUp</h1>
+    <h1>Create an account</h1>
     <form @submit="submit">
-        <div class="container">
-            <p>Create an account.</p>
-            <label for="email">Email:</label>
-            <input type="email" placeholder="Enter your email" name="email" v-model="email" required>
+        <div>
+            <div class="mb-3">  
+                <label class="form-label" for="email">Email:</label>
+                <input class="form-control" type="email" placeholder="Enter your email" name="email" v-model="email" required>
+            </div>
 
-            <label for="password">Password:</label>
-            <input type="password" placeholder="Enter Password" name="password" v-model="password" required>
+            <div class="mb-3">  
+                <label class="form-label" for="password">Password:</label>
+                <input class="form-control" type="password" placeholder="Enter Password" name="password" v-model="password" required>
+            </div>
 
-            <label for="repeat-password">Repeat Password:</label>
-            <input type="password" placeholder="Repeat Password" name="repeat-password" required>
-            <!-- validar password with function-->
+            <div class="mb-3">  
+                <label class="form-label" for="repeat-password">Repeat Password:</label>
+                <input class="form-control" type="password" placeholder="Repeat Password" name="repeat-password" required>
+                <!-- validate second password with function-->
+            </div>
 
-            <label>Remember me:</label>
-            <input type="checkbox" checked="checked" name="remember">
+            <div class="mb-3">  
+                <label>Remember me</label>
+                <input type="checkbox" checked="checked" name="remember">
+            </div>
 
-            <p>By creating an account, you agree to the Terms of Service and Privacy Policy.</p>
+            <div class="mb-3">
+                <p class="form-text">By creating an account, you agree to the Terms of Service and Privacy Policy.</p>
+            </div>
 
-            <button type="submit" class="" @click="handleSignUp">Sign Up</button>
+            <button type="submit" @click="handleSignUp">Sign Up</button>
+
         </div>
         <!--email de confirmación y alerta de que tiene que confirmar email-->
     </form> 

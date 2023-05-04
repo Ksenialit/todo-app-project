@@ -1,23 +1,27 @@
 <template>
-  <section>
-    <h1>Welcome back! <i class="bi bi-emoji-smile"></i></h1>
-    <button @click="signOut">Log out</button>
+  <button @click="signOut">Log out</button>
+  <h2>Welcome back!</h2>
+  <section class="card">
     <div>
+      <h3>To do list</h3>
 
-      <label>Add to do</label>
-      <input type="text" v-model="newTask" @keydown.enter="handleNewTask(this.newTask, this.user.id)" placeholder="Write your to do">
-      <button @click="$event => handleNewTask(this.newTask, this.user.id)">Create task</button>
       <div>
-        <p>Incompleted task:</p>
+        <input type="text" v-model="newTask" @keydown.enter="handleNewTask(this.newTask, this.user.id)" placeholder="Write your to do">
+        <button @click="$event => handleNewTask(this.newTask, this.user.id)"><i class="bi bi-plus-lg"></i></button>
+      </div>
+
+      <div>
         <ul>
           <TaskItem v-bind:task="task" v-for="task in incompletedTasks" :key="task.id" @edit="(title) => editTask(task.id, title)" @delete="deleteTask(task.id)" @update="updateTask(task.id, task.is_complete)"></TaskItem>
         </ul>
-        <p>Completed task:</p>
+      </div>
+
+      <div>
+        <h4>Completed</h4>
         <ul>
           <TaskItem v-bind:task="task" v-for="task in completedTasks" :key="task.id" @delete="deleteTask(task.id)" @update="updateTask(task.id, task.is_complete)"></TaskItem>
         </ul>
       </div>
-      
     </div>
   </section>
 </template>
