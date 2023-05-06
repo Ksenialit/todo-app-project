@@ -6,14 +6,14 @@
                 <label for="email" class="form-label">Email</label>
                 <input type="email" placeholder="Enter your email" name="email" v-model="email" class="form-control" required>
             </div>
-
+            <!-- validar el email en la misma página-->
             <div class="mb-3">  
             <label for="password" class="form-label">Password</label>
-            <input type="password" placeholder="Enter Password" name="password" v-model="password" class="form-control" required>
+            <input type="password" placeholder="Enter your password" name="password" v-model="password" class="form-control" required>
             </div>
 
             <div class="mb-3">  
-            <button class="btn btn-primary" type="submit" @click="handleSignIn">Sign in</button>   
+                <button class="btn btn-primary" type="submit" @click="handleSignIn">Sign in</button>   
             </div>
 
             <div class="mb-3 form-check">  
@@ -22,8 +22,8 @@
             </div>
 
             <div class="mb-3">  
-            <a href="">Forgot password?</a>
-            <p>New? <RouterLink to="/Sign-up">Create an account.</RouterLink></p>
+                <a href="">Forgot password?</a>
+                <p>New? <RouterLink to="/Sign-up">Create an account.</RouterLink></p>
             </div>
         </div>   
     </form> 

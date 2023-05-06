@@ -1,11 +1,10 @@
 <template>
-  <button @click="signOut">Log out</button>
-  <h2>Welcome back!</h2>
+  <h2 class="font-monospace">Welcome back!</h2>
   <section class="card">
     <div>
-      <h3>To do list</h3>
+      <h3 class="text-center font-monospace">To do list</h3>
 
-      <div>
+      <div class="todo-input">
         <input type="text" v-model="newTask" @keydown.enter="handleNewTask(this.newTask, this.user.id)" placeholder="Write your to do">
         <button @click="$event => handleNewTask(this.newTask, this.user.id)"><i class="bi bi-plus-lg"></i></button>
       </div>
@@ -61,7 +60,6 @@
     },
     methods: {
       ... mapActions(TasksStore, ['fetchTasks', 'addNewTask', 'deleteTask', 'updateTask', 'editTask']),
-      ... mapActions(UserStore, ['signOut']),
       handleNewTask (newTask, userId) {
          this.addNewTask(newTask, userId)
          this.newTask = ''
@@ -78,6 +76,34 @@
   </script>
   
   <style scoped>
-  
+  ul {
+    padding: 0;
+  }
+
+  .todo-input {
+    position: relative;
+    margin: 0 0 30px;
+  }
+  .todo-input input[type=text] {
+    width: 100%;
+    height: 50px;
+    font: 15px/1.4 Poppins,sans-serif;
+    padding: 15px;
+    background: #f3f3f3;
+    color: #333;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: border .3s linear;
+}
+.todo-input button {
+    background: none;
+    border: none;
+    color: #4ec5c1;
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
   </style>
   
