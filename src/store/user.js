@@ -21,7 +21,7 @@ export default defineStore('user', {
         password
       });
       if (error) throw error;
-      if (user) this.user = user;
+      if (user.identities.length === 0) throw "User already exists"
     },
     async signIn ({ email, password }) {
       const { data: { user }, error } = await supabase.auth.signInWithPassword({

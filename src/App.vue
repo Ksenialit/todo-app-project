@@ -1,6 +1,8 @@
 <template>
   <Nav />
-  <RouterView />
+  <main class="container">
+    <RouterView />
+  </main>
 
 </template>
 

@@ -1,23 +1,26 @@
 <template>
-  <section>
-    <h1>Welcome back! <i class="bi bi-emoji-smile"></i></h1>
-    <button @click="signOut">Log out</button>
+  <h2>Welcome back!</h2>
+  <section class="card">
     <div>
+      <h3 class="text-center">To do list</h3>
 
-      <label>Add to do</label>
-      <input type="text" v-model="newTask" @keydown.enter="handleNewTask(this.newTask, this.user.id)" placeholder="Write your to do">
-      <button @click="$event => handleNewTask(this.newTask, this.user.id)">Create task</button>
+      <div class="todo-input">
+        <input type="text" v-model="newTask" @keydown.enter="handleNewTask(this.newTask, this.user.id)" placeholder="Write your to do">
+        <button @click="$event => handleNewTask(this.newTask, this.user.id)"><i class="bi bi-plus-lg"></i></button>
+      </div>
+
       <div>
-        <p>Incompleted task:</p>
         <ul>
           <TaskItem v-bind:task="task" v-for="task in incompletedTasks" :key="task.id" @edit="(title) => editTask(task.id, title)" @delete="deleteTask(task.id)" @update="updateTask(task.id, task.is_complete)"></TaskItem>
         </ul>
-        <p>Completed task:</p>
+      </div>
+
+      <div>
+        <h4>Completed</h4>
         <ul>
           <TaskItem v-bind:task="task" v-for="task in completedTasks" :key="task.id" @delete="deleteTask(task.id)" @update="updateTask(task.id, task.is_complete)"></TaskItem>
         </ul>
       </div>
-      
     </div>
   </section>
 </template>
@@ -57,7 +60,6 @@
     },
     methods: {
       ... mapActions(TasksStore, ['fetchTasks', 'addNewTask', 'deleteTask', 'updateTask', 'editTask']),
-      ... mapActions(UserStore, ['signOut']),
       handleNewTask (newTask, userId) {
          this.addNewTask(newTask, userId)
          this.newTask = ''
@@ -74,6 +76,52 @@
   </script>
   
   <style scoped>
-  
+  ul {
+    padding: 0;
+  }
+
+  .todo-input {
+    position: relative;
+    margin: 0 0 30px;
+  }
+  .todo-input input[type=text] {
+    width: 100%;
+    height: 50px;
+    font: 15px/1.4 Poppins,sans-serif;
+    padding: 15px;
+    background: #f3f3f3;
+    color: #333;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: border .3s linear;
+}
+.todo-input button {
+    background: none;
+    border: none;
+    color: #4ec5c1;
+    font-size: 26px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.todo-input input::placeholder {
+  font-size: 18px;
+}
+
+h2 {
+  margin-bottom: 40px;
+}
+
+h3 {
+  margin-bottom: 20px;
+
+}
+
+h4 {
+ margin: 30px 0 10px 0;
+ font-size: 20px;
+}
   </style>
   
