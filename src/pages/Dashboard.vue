@@ -1,8 +1,8 @@
 <template>
-  <h2 class="font-monospace">Welcome back!</h2>
+  <h2>Welcome back!</h2>
   <section class="card">
     <div>
-      <h3 class="text-center font-monospace">To do list</h3>
+      <h3 class="text-center">To do list</h3>
 
       <div class="todo-input">
         <input type="text" v-model="newTask" @keydown.enter="handleNewTask(this.newTask, this.user.id)" placeholder="Write your to do">
@@ -99,11 +99,29 @@
     background: none;
     border: none;
     color: #4ec5c1;
-    font-size: 24px;
+    font-size: 26px;
     position: absolute;
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+}
+
+.todo-input input::placeholder {
+  font-size: 18px;
+}
+
+h2 {
+  margin-bottom: 40px;
+}
+
+h3 {
+  margin-bottom: 20px;
+
+}
+
+h4 {
+ margin: 30px 0 10px 0;
+ font-size: 20px;
 }
   </style>
   

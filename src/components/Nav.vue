@@ -1,13 +1,13 @@
 <template>
   <nav class="nav navbar">
     <div>
-      <a class="navbar-brand font-monospace" href="#">To do app</a>
+      <a class="navbar-brand" href="#"><img src="../assets/logo.png" alt="Logo" width="40" height="34" class="d-inline-block align-text-top" /></a>
     </div>
     <div>
       <ul class="nav-items navbar-nav">
-        <li><RouterLink to="/sign-in">Sign In</RouterLink></li>
-        <li><RouterLink to="/sign-up">Sign Up</RouterLink></li>
-        <li><button @click="signOut">Log out</button></li>
+        <li v-if="!this.user" class="p-2"><RouterLink to="/sign-in">Sign In</RouterLink></li>
+        <li v-if="!this.user" class="p-2"><RouterLink to="/sign-up">Sign Up</RouterLink></li>
+        <li v-if="this.user"><button @click="signOut">Log out</button></li>
       </ul> 
     </div>
   </nav>
@@ -35,7 +35,7 @@
   
 <style scoped>
   .nav {
-    background-color: white;
+    background-color: #F5F5F5;
     margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
