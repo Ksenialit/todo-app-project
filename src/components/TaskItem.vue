@@ -94,4 +94,11 @@ i {
 .toggle-complete {
     text-decoration: line-through;
 }
+
+@media (max-width: 480px) {
+    .update-tasks {
+    margin: 20px 0px;
+    font-size: 14px;
+}
+}
 </style>

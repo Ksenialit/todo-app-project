@@ -123,5 +123,25 @@ h4 {
  margin: 30px 0 10px 0;
  font-size: 20px;
 }
+
+@media (max-width: 769px) {
+  h2 {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+    h3 {
+        padding-top: 10px;
+        font-size: 24px;
+    }
+    .todo-input input::placeholder {
+    font-size: 16px;
+    }
+  .todo-input button {
+      font-size: 24px;
+  }
+}
+
   </style>
   

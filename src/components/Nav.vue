@@ -50,5 +50,19 @@
     text-decoration: none;
     color: #220C10;
   }
+
+  button {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+        background-color: #220C10;
+        border: none;
+        letter-spacing: 2px;
+        color: #F5F5F5;
+    }
+
+    button:hover {
+        background-color: #A49E8D;
+    }
 </style>
   

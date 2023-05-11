@@ -107,5 +107,12 @@
         padding-top: 5px;
     }
 
+    @media (max-width: 480px) {
+        h1 {
+            padding-top: 10px;
+            font-size: 24px;
+        }
+    }
+
 </style>
   

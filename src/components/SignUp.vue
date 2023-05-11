@@ -38,7 +38,7 @@
     </div>
 
     <div id="email-confirmation">
-        <p>You're just one step away from creating you account. Please comfirm your email addres.</p>
+        <p>You're just one step away from creating you account. Please confirm your email address.</p>
     </div>
   </template>
   
@@ -71,7 +71,7 @@
                 try {
                     await this.signUp(userData)
                     document.getElementById('create-account').style.display = 'none'
-                    document.getElementById('email-confirmation').style.display = 'block'
+                    document.getElementById('email-confirmation').style.display = 'flex'
                 } catch (error) {
                     alert('User already exists')
                 }
@@ -93,7 +93,19 @@
     }
     #email-confirmation {
         display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+        flex-grow: 1;
     }
+    #email-confirmation p {
+        font-size: 22px;
+        text-align: center;
+        padding: 0 15px;
+        letter-spacing: 2px;
+    }
+
     div label, div input {
         padding-top: 6px;
     }
@@ -103,7 +115,6 @@
         flex-direction: row;
         align-items: center;
     }
-
 
     .button-div {
         display: flex;
@@ -121,6 +132,14 @@
 
     button:hover {
         background-color: #220C10;
+    }
+
+
+    @media (max-width: 480px) {
+        h1 {
+            padding-top: 10px;
+            font-size: 24px;
+        }
     }
   </style>
   
