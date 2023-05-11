@@ -35,12 +35,12 @@
   
 <style scoped>
   .nav {
-    background-color: #F5F5F5;
+    background-color: #FFF;
     margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     padding: 0 40px 0 40px;
-    height: 60px;
+    height: 50px;
   }
   .nav-items {
     display: flex;
